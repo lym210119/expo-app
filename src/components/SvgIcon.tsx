@@ -11,7 +11,6 @@ type SvgIconProps = {
 };
 
 export default function SvgIcon({ name, color, size, style }: SvgIconProps) {
-  console.log('color: ', color);
   const [svgData, setSvgData] = useState<any>(null);
 
   useEffect(() => {
