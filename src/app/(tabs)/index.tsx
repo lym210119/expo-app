@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
+import SvgIcon from '@/components/SvgIcon';
 
-
-import VueSvg from '@/assets/svg/vue.svg';
 
 export default function TabOneScreen() {
   return (
@@ -13,7 +12,7 @@ export default function TabOneScreen() {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
 
-      <VueSvg width={60} height={60} color="#42b883" />
+      <SvgIcon size={60} name="MaterialSymbolsAndroidGoogleHome" color='#8E8E8F' />
     </View>
   );
 }

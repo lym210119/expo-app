@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
-import Svg, { Path, SvgXml } from "react-native-svg";
-import VueSvg from '../assets/svg/vue.svg';
+import { View, ViewStyle } from "react-native";
+import Svg, { SvgXml } from "react-native-svg";
+import AssetSvg from "../assets/svg";
 
 type SvgIconProps = {
   name: string;
   color?: string;
   size?: number;
+  style?: ViewStyle;
 };
 
-export default function SvgIcon({ name, color, size }: SvgIconProps) {
-  const [Icon, setIcon] = useState<any>(null);
+export default function SvgIcon({ name, color, size, style }: SvgIconProps) {
+  console.log('color: ', color);
+  const [svgData, setSvgData] = useState<any>(null);
 
   useEffect(() => {
-    const importSvg = async () => {
-      const svgIcon = await import(`../assets/svg/${name}.svg`)
-      setIcon(svgIcon.default);
-    }
-    importSvg();
+    const svgXmlData = AssetSvg[name as keyof typeof AssetSvg];
+    setSvgData(svgXmlData);
   }, [name]);
 
-  if (!Icon) {
+  if (!svgData) {
     return null; // 或者返回一个加载中的占位符
   }
 
-  return <Icon />
+  return <SvgXml xml={svgData} width={size} height={size} color={color} style={style} />;
 }
-
